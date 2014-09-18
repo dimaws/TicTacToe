@@ -29,7 +29,7 @@ namespace TicTacToe
             for (int i = 0; i < myGridModel.Grid.Count; i++)
             {
                 for (int j = 0; j < myGridModel.Grid.Count; j++)
-                    Console.Write(myGridModel.Grid[i][j].ToString() + "\t");
+                    Console.Write("\t" + myGridModel.Grid[i][j].ToString());
                 Console.WriteLine();  
             }
 
@@ -45,17 +45,9 @@ namespace TicTacToe
 
             Console.WriteLine("Введите координаты ячейки:");
 
-            myGridController.makeStep(getCell(Console.ReadLine().Split(' ')), ECellType.X);
+            myGridController.makeStep(Console.ReadLine());
             
         }
-        Cell getCell(string[] str)
-        {
-            // TODO проверка данных в str на корректность 
-
-            int i = Int32.Parse(str[0])-1;
-            int j = Int32.Parse(str[1])-1;
-
-            return myGridModel.Grid[i][j];
-        }
+        
     }
 }

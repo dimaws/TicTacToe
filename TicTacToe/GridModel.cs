@@ -11,6 +11,7 @@ namespace TicTacToe
     {
         public List<List<Cell>> Grid { get; set; } // Двумерный массив сетка игрового поля
         private int countOfEmptyCells; // счетчик оставшихся пустых ячеек, чтобы понять когда игра кончится.
+        private ECellType currentPlayer = ECellType.X;
 
         public GridModel(int sizeOfSide)
         {
@@ -22,7 +23,6 @@ namespace TicTacToe
                 for (int j = 0; j < sizeOfSide; j++)
                     temp.Add(new Cell());
                 Grid.Add(temp);
-
             }
             countOfEmptyCells = sizeOfSide * sizeOfSide;
         }
@@ -33,15 +33,30 @@ namespace TicTacToe
             return false;
         }
 
-        public bool Step(Cell cell, ECellType type)
+        public bool Step(Cell cell)
         {
+            ECellType type = this.currentPlayer;
             if (!checkStep(cell, type))
                 return false;
                 
             cell.setState(type);
             countOfEmptyCells--;
+            changeCurrentPlayer();
             return true;
             // TODO оповестить подписчиков об изменении модели
         }
+        void changeCurrentPlayer()
+        {
+            switch(this.currentPlayer){
+                case ECellType.X: 
+                    this.currentPlayer = ECellType.O; 
+                    break;
+                case ECellType.O: 
+                    this.currentPlayer = ECellType.X; 
+                    break;
+            }
+
+        }
+
     }
 }
