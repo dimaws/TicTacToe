@@ -33,7 +33,7 @@ namespace TicTacToe
             return false;
         }
 
-        void Step(Cell cell, ECellType type)
+        public void Step(Cell cell, ECellType type)
         {
             if (!checkStep(cell, type))
                 throw new InvalidOperationException("Ячейка недоступна для записи этого значения");

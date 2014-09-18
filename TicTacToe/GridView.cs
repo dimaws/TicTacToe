@@ -9,10 +9,19 @@ namespace TicTacToe
     class GridView
     {
         // TODO реализовать слушателя/подписчика
-        GridModel myGridModel;
-        public GridView(GridModel myGridModel)
+        GridModel      myGridModel;
+        GridController myGridController;
+
+        public GridView(int sizeOfSide)
         {
-            this.myGridModel = myGridModel;
+            this.myGridController = new GridController(sizeOfSide);
+            this.getModel();
+            this.myGridController.view = this;
+        }
+
+        public void getModel()
+        {
+            this.myGridModel = myGridController.ResponseModel();
         }
         public void DisplayGrid()
         {
@@ -26,8 +35,20 @@ namespace TicTacToe
             }
 
             Console.WriteLine();
-            Console.WriteLine("Нажмите любую клавишу...");
-            Console.ReadKey();
+            Console.WriteLine("Ход Х: введите координаты ячейки:");
+
+            myGridController.makeStep(getCell(Console.ReadLine().Split(' ')), ECellType.X);
+            
         }
+        Cell getCell(string[] str)
+        {
+            // TODO проверка данных в str на корректность 
+
+            int i = Int32.Parse(str[0])-1;
+            int j = Int32.Parse(str[1])-1;
+
+            return myGridModel.Grid[i][j];
+        }
+
     }
 }

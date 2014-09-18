@@ -9,17 +9,22 @@ namespace TicTacToe
     class GridController
     {
         GridModel model;
-        GridView responseView;
+        public GridView view { get; set; }
         public GridController(int sizeOfSide)
         {
             this.model = new GridModel(sizeOfSide);
-            responseView = new GridView(this.model);
         }
-        public GridView ResponseView()
+        public GridModel ResponseModel()
         {
-            return responseView;
+            return this.model;
         }
-        
+
+        public void makeStep(Cell cell, ECellType type)
+        {
+            // TODO сделать проверку корректности шага. Модель должна вернуть ответ ок или не ок.
+            this.model.Step(cell, type);
+            view.DisplayGrid();
+        }
         
 
 

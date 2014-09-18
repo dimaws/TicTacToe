@@ -43,7 +43,9 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="ECellType.cs" />
+    <Compile Include="GridController.cs" />
     <Compile Include="GridModel.cs" />
+    <Compile Include="GridView.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
