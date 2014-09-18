@@ -10,7 +10,7 @@ namespace TicTacToe
     class GridModel
     {
         public List<List<Cell>> Grid { get; set; } // Двумерный массив сетка игрового поля
-        private int count; // счетчик оставшихся пустых ячеек, чтобы понять когда игра кончится.
+        private int countOfEmptyCells; // счетчик оставшихся пустых ячеек, чтобы понять когда игра кончится.
 
         public GridModel(int sizeOfSide)
         {
@@ -24,7 +24,7 @@ namespace TicTacToe
                 Grid.Add(temp);
 
             }
-            count = sizeOfSide * sizeOfSide;
+            countOfEmptyCells = sizeOfSide * sizeOfSide;
         }
         bool checkStep(Cell cell, ECellType type)
         {
@@ -38,7 +38,7 @@ namespace TicTacToe
             if (!checkStep(cell, type))
                 throw new InvalidOperationException("Ячейка недоступна для записи этого значения");
             cell.setState(type);
-            count--;
+            countOfEmptyCells--;
             // TODO оповестить подписчиков об изменении модели
         }
     }

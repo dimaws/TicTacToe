@@ -11,29 +11,9 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-            GridModel myGridModel = new GridModel(3);
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            /* 18/09/2014: test
-            for (int i = 0; i < myGridModel.Grid.Count; i++)
-            {
-                for (int j = 0; j < myGridModel.Grid.Count; j++)
-                    Console.Write(myGridModel.Grid[i][j].ToString() + "\t");
-                Console.WriteLine();  
-            }
-            */
-            Console.WriteLine();
-            Console.WriteLine("Нажмите любую клавишу...");
-            Console.ReadKey();
+            GridController ctrl = new GridController(3);
+            GridView view = ctrl.ResponseView();
+            view.DisplayGrid();
             
         }
     }
