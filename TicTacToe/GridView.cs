@@ -18,12 +18,11 @@ namespace TicTacToe
             this.getModel();
             this.myGridController.view = this;
         }
-
         public void getModel()
         {
             this.myGridModel = myGridController.ResponseModel();
         }
-        public void DisplayGrid()
+        public void DisplayGrid(string notifyMessage = "")
         {
             Console.Clear();
 
@@ -35,7 +34,16 @@ namespace TicTacToe
             }
 
             Console.WriteLine();
-            Console.WriteLine("Ход Х: введите координаты ячейки:");
+            if (notifyMessage != "")
+            {
+                Console.Beep(150, 250);
+                Console.BackgroundColor = ConsoleColor.Red;
+                Console.WriteLine(notifyMessage);
+                Console.BackgroundColor = ConsoleColor.Black;
+            }
+            else Console.WriteLine();
+
+            Console.WriteLine("Введите координаты ячейки:");
 
             myGridController.makeStep(getCell(Console.ReadLine().Split(' ')), ECellType.X);
             
@@ -49,6 +57,5 @@ namespace TicTacToe
 
             return myGridModel.Grid[i][j];
         }
-
     }
 }

@@ -18,16 +18,11 @@ namespace TicTacToe
         {
             return this.model;
         }
-
         public void makeStep(Cell cell, ECellType type)
         {
-            // TODO сделать проверку корректности шага. Модель должна вернуть ответ ок или не ок.
-            this.model.Step(cell, type);
-            view.DisplayGrid();
+            if (!this.model.Step(cell, type)) 
+                view.DisplayGrid("В эту ячейку уже ходили. Выберите другую.");
+            else view.DisplayGrid();
         }
-        
-
-
-
     }
 }

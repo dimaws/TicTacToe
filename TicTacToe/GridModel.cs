@@ -33,12 +33,14 @@ namespace TicTacToe
             return false;
         }
 
-        public void Step(Cell cell, ECellType type)
+        public bool Step(Cell cell, ECellType type)
         {
             if (!checkStep(cell, type))
-                throw new InvalidOperationException("Ячейка недоступна для записи этого значения");
+                return false;
+                
             cell.setState(type);
             countOfEmptyCells--;
+            return true;
             // TODO оповестить подписчиков об изменении модели
         }
     }
