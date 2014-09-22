@@ -33,6 +33,26 @@ namespace TicTacToe
                 Console.WriteLine();  
             }
 
+            if (myGridModel.winner == ECellType.X)
+            {
+                Console.WriteLine("Победили крестики.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            if (myGridModel.winner == ECellType.O)
+            {
+                Console.WriteLine("Победили нолики.");
+                Console.ReadKey();
+                Environment.Exit(0);
+            }
+            if (myGridModel.winner == ECellType.Empty)
+                if(myGridModel.countOfEmptyCells <= 0)
+                {
+                    Console.WriteLine("Ничья.");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                }
+
             Console.WriteLine();
             if (notifyMessage != "")
             {
