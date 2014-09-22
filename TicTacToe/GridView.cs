@@ -33,25 +33,27 @@ namespace TicTacToe
                 Console.WriteLine();  
             }
 
-            if (myGridModel.winner == ECellType.X)
+            switch (myGridModel.winner)
             {
-                Console.WriteLine("Победили крестики.");
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
-            if (myGridModel.winner == ECellType.O)
-            {
-                Console.WriteLine("Победили нолики.");
-                Console.ReadKey();
-                Environment.Exit(0);
-            }
-            if (myGridModel.winner == ECellType.Empty)
-                if(myGridModel.countOfEmptyCells <= 0)
-                {
-                    Console.WriteLine("Ничья.");
+                case ECellType.X: 
+                    Console.WriteLine("Победили крестики.");
                     Console.ReadKey();
                     Environment.Exit(0);
-                }
+                    break;
+                case ECellType.O:
+                    Console.WriteLine("Победили нолики.");
+                    Console.ReadKey();
+                    Environment.Exit(0);
+                    break;
+                case ECellType.Empty:
+                    if (myGridModel.countOfEmptyCells <= 0)
+                    {
+                        Console.WriteLine("Ничья.");
+                        Console.ReadKey();
+                        Environment.Exit(0);
+                    }
+                    break;
+            }
 
             Console.WriteLine();
             if (notifyMessage != "")
