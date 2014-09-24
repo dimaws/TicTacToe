@@ -8,18 +8,10 @@ namespace TicTacToe
 {
     class Cell
     {
-        private ECellType state;
+        public ECellType state { get; set; }
         public Cell()
         {
             this.state = ECellType.Empty;
-        }
-        public void setState(ECellType value)
-        {
-            this.state = value;
-        }
-        public ECellType getState()
-        {
-            return this.state;
         }
         bool isEmpty()
         {
