@@ -26,10 +26,10 @@ namespace TicTacToe
         {
             Console.Clear();
 
-            for (int i = 0; i < myGridModel.Grid.Count; i++)
+            for (int i = 0; i < myGridModel.getSizeOfSide() ; i++)
             {
-                for (int j = 0; j < myGridModel.Grid.Count; j++)
-                    Console.Write("\t" + myGridModel.Grid[i][j].ToString());
+                for (int j = 0; j < myGridModel.getSizeOfSide(); j++)
+                    Console.Write("\t" + myGridModel.getCell(i, j).ToString());
                 Console.WriteLine();  
             }
 
