@@ -36,10 +36,10 @@ namespace TicTacToe
         {
             // TODO проверка данных в str на корректность 
 
-            int i = Int32.Parse(str[0]) - 1;
-            int j = Int32.Parse(str[1]) - 1;
+            int row = Int32.Parse(str[0]) - 1;
+            int col = Int32.Parse(str[1]) - 1;
 
-            return this.model.Grid[i][j];
+            return this.model.getCell(row, col);
         }
 
     }
