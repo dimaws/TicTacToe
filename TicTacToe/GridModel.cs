@@ -71,34 +71,47 @@ namespace TicTacToe
         ECellType checkWinner(int row, int col)
         {
             if (!check(row, col, row + 1, col, 2))
-                if (!check(row, col, row - 1, col, 2))
+            //    if (!check(row, col, row - 1, col, 2))
                     if (!check(row, col, row, col + 1, 2))
-                        if (!check(row, col, row, col - 1, 2))
+            //            if (!check(row, col, row, col - 1, 2))
                             if (!check(row, col, row + 1, col + 1, 2))
-                                if (!check(row, col, row - 1, col - 1, 2))
+            //                    if (!check(row, col, row - 1, col - 1, 2))
                                     if (!check(row, col, row + 1, col - 1, 2))
-                                        if (!check(row, col, row - 1, col + 1, 2))
-                                            if (!checkForCurrentCellInTheMiddle(row, col))
+            //                            if (!check(row, col, row - 1, col + 1, 2))
+            //                                if (!checkForCurrentCellInTheMiddle(row, col))
                                                 return ECellType.Empty;
             return currentPlayer;
         }
-        bool check(int currentRow, int currentCol, int targetRow, int targetCol, int deep)
+        bool check(int currentRow, int currentCol, int targetRow, int targetCol, int deep, bool reverse = false, int count = 0)
         {
+
             int sizeOfSide = this.grid.sizeOfSide;
             bool result = false;
-            deep--;
+            count++; // чтобы n-ная итерация рекурсии знала, насколько она глубоко находится/сколько раз в рекурсии метод уже исполнился
+            deep--; // для ограничения итераций и выхода из рекурсии
 
-            if (targetRow >= 0 && targetRow < sizeOfSide) // проверка границ сверху/снизу
-                if (targetCol >= 0 && targetCol < sizeOfSide) // проверка границ слева/справа
-                    if (this.grid.getCell(currentRow, currentCol).state == this.grid.getCell(targetRow, targetCol).state)
-                    {
-                        int differenceOfRows = targetRow - currentRow;
-                        int differenceOfCols = targetCol - currentCol;
-                        if (deep == 0) result = true;
-                        else result = check(targetRow, targetCol, targetRow + differenceOfRows, targetCol + differenceOfCols, deep);
-                    }
+            int differenceOfRows = targetRow - currentRow;
+            int differenceOfCols = targetCol - currentCol;
+
+            if (targetRow >= 0 && targetRow < sizeOfSide && // проверка границ сверху/снизу
+                targetCol >= 0 && targetCol < sizeOfSide && // проверка границ слева/справа
+                this.grid.getCell(currentRow, currentCol).state == this.grid.getCell(targetRow, targetCol).state)
+            {
+                if (deep == 0) result = true;
+                else result = check(targetRow, targetCol, targetRow + differenceOfRows, targetCol + differenceOfCols, deep, reverse, count);
+            }
+            else
+            {
+                if (!reverse)
+                { // если кончился список, с последней найденной ячейки проверяем линию полностью в другую сторону.
+                    reverse = true;
+                    deep += count;
+                    result = check(currentRow, currentCol, currentRow - differenceOfRows, currentCol - differenceOfCols, deep, reverse, count);
+                }
+            }
             return result;
         }
+
         bool checkForCurrentCellInTheMiddle(int currentRow, int currentCol)
         {
             // вертикально
