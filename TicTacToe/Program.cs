@@ -11,8 +11,8 @@ namespace TicTacToe
     {
         static void Main(string[] args)
         {
-
-            GridView view = new GridView(3);
+            int size = 3;
+            GridView view = new GridView(size);
             view.DisplayGrid();
             
         }
