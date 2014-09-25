@@ -13,7 +13,7 @@ namespace TicTacToe
         {
             int size = 3;
             GridView view = new GridView(size);
-            view.DisplayGrid();
+            view.displayGrid();
             
         }
     }

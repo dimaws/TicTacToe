@@ -21,11 +21,12 @@ namespace TicTacToe
         }
         public override string ToString()
         {
-            switch (this.state){
+            switch (this.state)
+            {
                 case ECellType.Empty: return ".";
                 case ECellType.X: return "X";
                 case ECellType.O: return "O";
-            default: return "default";
+                default: return "error";
             }
         }
         public static bool operator ==(Cell a, Cell b)
