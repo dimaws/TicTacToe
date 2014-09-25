@@ -22,7 +22,7 @@ namespace TicTacToe
         {
             this.myGridModel = myGridController.ResponseModel();
         }
-        public void DisplayGrid(string notifyMessage = "")
+        public void displayGrid(string notifyMessage = "")
         {
             Console.Clear();
 

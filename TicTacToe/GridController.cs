@@ -29,8 +29,8 @@ namespace TicTacToe
             int col = Int32.Parse(RowCol[1]) - 1;
             //if (!this.model.Step(cell))
             if (!this.model.Step(row, col))
-                view.DisplayGrid("В эту ячейку уже ходили. Выберите другую.");
-            else view.DisplayGrid();
+                view.displayGrid("Ход недоступен. Выберите другую.");
+            else view.displayGrid();
         }
         Cell getCell(string[] str)
         {
