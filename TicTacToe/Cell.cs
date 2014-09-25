@@ -28,6 +28,19 @@ namespace TicTacToe
             default: return "default";
             }
         }
-
+        public static bool operator ==(Cell a, Cell b)
+        {
+            if (a.state == b.state) 
+                return true;
+            else 
+                return false;
+        }
+        public static bool operator !=(Cell a, Cell b)
+        {
+            if (a.state != b.state)
+                return true;
+            else
+                return false;
+        }
     }
 }
