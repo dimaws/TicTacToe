@@ -8,17 +8,12 @@ namespace TicTacToe
 {
     class GridController
     {
-        GridModel model;
+        public GridModel model { get; set; }
         public GridView view { get; set; }
         
         public GridController(int sizeOfSide)
         {
             this.model = new GridModel(sizeOfSide);
-        }
-        
-        public GridModel ResponseModel()
-        {
-            return this.model;
         }
         
         public void makeStep(string str)

@@ -9,8 +9,8 @@ namespace TicTacToe
     class GridView
     {
         // TODO реализовать слушателя/подписчика
-        GridModel      myGridModel;
-        GridController myGridController;
+        GridModel myGridModel { get; set; }
+        GridController myGridController { get; set; }
 
         public GridView(int sizeOfSide)
         {
@@ -20,7 +20,7 @@ namespace TicTacToe
         }
         public void getModel()
         {
-            this.myGridModel = myGridController.ResponseModel();
+            this.myGridModel = myGridController.model;
         }
         public void DisplayGrid(string notifyMessage = "")
         {
