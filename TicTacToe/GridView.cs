@@ -8,7 +8,6 @@ namespace TicTacToe
 {
     class GridView
     {
-        // TODO реализовать слушателя/подписчика
         GridModel myGridModel { get; set; }
         GridController myGridController { get; set; }
 
@@ -17,6 +16,7 @@ namespace TicTacToe
             this.myGridController = new GridController(sizeOfSide);
             this.getModel();
             this.myGridController.view = this;
+            myGridModel.displayEvent += displayGrid;
         }
         public void getModel()
         {

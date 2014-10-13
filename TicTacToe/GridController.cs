@@ -18,14 +18,10 @@ namespace TicTacToe
         
         public void makeStep(string str)
         {
-            //Cell cell = getCell(str.Split(' '));
             string[] RowCol = str.Split(' ');
             int row = Int32.Parse(RowCol[0]) - 1;
             int col = Int32.Parse(RowCol[1]) - 1;
-            //if (!this.model.Step(cell))
-            if (!this.model.Step(row, col))
-                view.displayGrid("Ход недоступен. Выберите другую.");
-            else view.displayGrid();
+            this.model.Step(row, col);
         }
         Cell getCell(string[] str)
         {

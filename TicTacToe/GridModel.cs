@@ -7,12 +7,14 @@ using System.Threading.Tasks;
 
 namespace TicTacToe
 {
+    delegate void DisplayHandler(string note);
     class GridModel
     {
         public Grid grid { get; set; }
         public int countOfEmptyCells { get; set; }// счетчик оставшихся пустых ячеек, чтобы понять когда игра кончится.
         private ECellType currentPlayer { get; set; }
         public ECellType winner { get; set; }
+        public event DisplayHandler displayEvent;
         public GridModel(int sizeOfSide)
         {
             this.grid = new Grid(sizeOfSide);
@@ -20,6 +22,12 @@ namespace TicTacToe
             this.winner = ECellType.Empty;
             this.currentPlayer = ECellType.X;
         }
+        public void OnDisplay(string note="")
+        {
+            if (displayEvent != null)
+                displayEvent(note);
+        }
+
         public int getSizeOfSide(){
             return grid.sizeOfSide;
         }
@@ -41,18 +49,24 @@ namespace TicTacToe
         public bool Step(int row, int col)
         {
             if (row < 0 || row >= this.grid.sizeOfSide || col < 0 || col >= this.grid.sizeOfSide)
+            {
+                OnDisplay("Указана ячейка, не содержащаяся в таблице");
                 return false;
+            }
             Cell cell = this.grid.getCell(row, col);
             ECellType type = this.currentPlayer;
             if (!checkStep(cell, type))
+            {
+                OnDisplay("Ячейка не пустая");
                 return false;
+            }
                 
             cell.state = type;
             countOfEmptyCells--;
             this.winner = checkWinner(row, col);
             changeCurrentPlayer();
+            OnDisplay();
             return true;
-            // TODO оповестить подписчиков об изменении модели
         }
 
         void changeCurrentPlayer()
